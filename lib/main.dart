@@ -18,6 +18,7 @@ class IAProject extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
       ),
