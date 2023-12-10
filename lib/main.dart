@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:i_a_project/core/constants.dart';
 import 'package:i_a_project/core/utils/app_router.dart';
 import 'package:i_a_project/core/utils/dio_helper.dart';
 import 'package:i_a_project/core/utils/service_locator.dart';
@@ -19,19 +20,18 @@ class IAProject extends StatelessWidget {
     SizeConfig.init(context);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
+      theme: ThemeData.dark()
+          .copyWith(scaffoldBackgroundColor: AppConstants.backgroundColor),
       routerConfig: AppRouter.router,
     );
   }
 }
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+// class HomeView extends StatelessWidget {
+//   const HomeView({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold();
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Scaffold();
+//   }
+// }
