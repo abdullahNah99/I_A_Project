@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:i_a_project/core/widgets/custom_button.dart';
 import 'package:i_a_project/core/widgets/custom_text_field.dart';
 import 'package:i_a_project/core/widgets/space_widgets.dart';
@@ -87,7 +88,8 @@ class RegisterViewBody extends StatelessWidget {
                     text: 'Sign up',
                     color: Colors.blue,
                     onTap: () async {
-                      if (cubit.formKey.currentState!.validate()) {}
+                      return context.go('/GroupsScreen');
+                      // if (cubit.formKey.currentState!.validate()) {}
                     },
                   ),
                 ],
