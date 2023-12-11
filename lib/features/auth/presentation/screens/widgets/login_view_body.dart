@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:i_a_project/core/utils/size_config.dart';
 import 'package:go_router/go_router.dart';
 import 'package:i_a_project/core/constants.dart';
 import 'package:i_a_project/core/widgets/custom_button.dart';
@@ -7,6 +8,7 @@ import 'package:i_a_project/core/widgets/custom_text_field.dart';
 import 'package:i_a_project/core/widgets/space_widgets.dart';
 import 'package:i_a_project/features/auth/presentation/cubits/login_cubit/login_cubit.dart';
 import 'package:i_a_project/features/auth/presentation/cubits/login_cubit/login_states.dart';
+import 'package:i_a_project/features/auth/presentation/screens/widgets/design_section.dart';
 import 'package:i_a_project/features/auth/presentation/screens/widgets/password_text_field.dart';
 import 'package:i_a_project/features/register/presentation/screens/register_screen.dart';
 
@@ -30,14 +32,22 @@ class LoginViewBody extends StatelessWidget {
         //   CustomProgressIndicator.showProgressIndicator(context);
         // }
       },
-      buildWhen: (previous, current) {
-        if (current is LoginInitial) {
-          return true;
-        }
-        return false;
-      },
+      buildWhen: (prev, cur) => cur is LoginInitial,
       builder: (context, state) {
         final LoginCubit cubit = BlocProvider.of<LoginCubit>(context);
+        return Center(
+          child: Container(
+            width: SizeConfig.screenWidth * .4,
+            height: SizeConfig.screenHeight * .95,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: Form(
+              key: cubit.formKey,
+              child: Column(
+                children: [
+                  const DesignSection(),
         return SingleChildScrollView(
           child: Form(
             key: cubit.formKey,
@@ -56,16 +66,8 @@ class LoginViewBody extends StatelessWidget {
                     labelText: 'Email',
                     onChanged: (p0) => cubit.email = p0,
                     keyboardType: TextInputType.emailAddress,
-                    // validator: (value) {
-                    //   if (value?.isEmpty ?? true) {
-                    //     return 'required';
-                    //   } else {
-                    //     if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value.toString())) {
-                    //       return "Please enter a valid email address";
-                    //     }
-                    //   }
-                    //   return null;
-                    // },
+                  ),
+                  const VerticalSpace(3),
                   ),
                   const VerticalSpace(2),
                   const PasswordTextField(),
@@ -79,6 +81,20 @@ class LoginViewBody extends StatelessWidget {
                       }
                     },
                   ),
+                  const VerticalSpace(3),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Don't have an account?",
+                        style: TextStyle(
+                          fontSize: SizeConfig.defaultSize,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          'SignUp For Free',
                   const VerticalSpace(2),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

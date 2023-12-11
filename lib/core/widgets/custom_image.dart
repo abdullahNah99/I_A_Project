@@ -28,8 +28,8 @@ class CustomImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width ?? SizeConfig.defaultSize * 10,
-      height: height ?? SizeConfig.defaultSize * 10,
+      width: width ?? SizeConfig.defaultSize * 7,
+      height: height ?? SizeConfig.defaultSize * 7,
       padding: padding,
       margin: margin,
       decoration: BoxDecoration(

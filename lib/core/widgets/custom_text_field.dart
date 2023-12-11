@@ -47,6 +47,7 @@ class CustomTextField extends StatelessWidget {
         initialValue: initialValue,
         textInputAction: textInputAction,
         obscureText: obscureText ?? false,
+        onTapOutside: (e) => FocusManager.instance.primaryFocus?.unfocus(),
         keyboardType: keyboardType,
         maxLines: maxLines,
         maxLength: maxLength,
