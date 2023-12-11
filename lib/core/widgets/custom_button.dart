@@ -31,7 +31,7 @@ class CustomButton extends StatelessWidget {
         ),
       ),
       child: Material(
-        color: Colors.transparent,
+        color: const Color.fromRGBO(0, 0, 0, 0),
         shadowColor: Colors.transparent,
         borderRadius: BorderRadius.circular(borderRadius ?? 12),
         child: InkWell(
