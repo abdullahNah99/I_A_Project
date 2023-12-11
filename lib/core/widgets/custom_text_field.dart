@@ -40,12 +40,13 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width ?? SizeConfig.defaultSize * 39,
+      width: width ?? SizeConfig.defaultSize * 30,
       child: TextFormField(
         autofocus: autofocus,
         initialValue: initialValue,
         textInputAction: textInputAction,
         obscureText: obscureText ?? false,
+        onTapOutside: (e) => FocusManager.instance.primaryFocus?.unfocus(),
         keyboardType: keyboardType,
         maxLines: maxLines,
         maxLength: maxLength,

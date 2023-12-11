@@ -12,11 +12,8 @@ class LoginView extends StatelessWidget {
       create: (context) => LoginCubit(
           // authenticationRepo: getIt.get<AuthenticationRepoImpl>(),
           ),
-      child: GestureDetector(
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: const Scaffold(
-          body: LoginViewBody(),
-        ),
+      child: const Scaffold(
+        body: LoginViewBody(),
       ),
     );
   }

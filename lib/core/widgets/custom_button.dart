@@ -26,14 +26,14 @@ class CustomButton extends StatelessWidget {
         onTap: onTap,
         child: SizedBox(
           width: width ?? SizeConfig.defaultSize * 25,
-          height: SizeConfig.defaultSize * 4,
+          height: SizeConfig.defaultSize * 3.7,
           child: Center(
             child: Text(
               text,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
-                fontSize: SizeConfig.defaultSize * 2.7,
+                fontSize: SizeConfig.defaultSize * 2.5,
               ),
             ),
           ),
