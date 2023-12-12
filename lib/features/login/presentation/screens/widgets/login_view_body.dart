@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:i_a_project/core/func/custom_progress_indicator.dart';
+import 'package:i_a_project/core/func/custom_snack_bar.dart';
+import 'package:i_a_project/core/utils/app_router.dart';
 import 'package:i_a_project/core/utils/size_config.dart';
 import 'package:i_a_project/core/widgets/custom_button.dart';
 import 'package:i_a_project/core/widgets/custom_text_field.dart';
 import 'package:i_a_project/core/widgets/space_widgets.dart';
-import 'package:i_a_project/features/auth/presentation/cubits/login_cubit/login_cubit.dart';
-import 'package:i_a_project/features/auth/presentation/cubits/login_cubit/login_states.dart';
-import 'package:i_a_project/features/auth/presentation/screens/widgets/design_section.dart';
-import 'package:i_a_project/features/auth/presentation/screens/widgets/password_text_field.dart';
+import 'package:i_a_project/features/login/presentation/cubits/login_cubit/login_cubit.dart';
+import 'package:i_a_project/features/login/presentation/cubits/login_cubit/login_states.dart';
+import 'package:i_a_project/features/login/presentation/screens/widgets/design_section.dart';
+import 'package:i_a_project/features/login/presentation/screens/widgets/password_text_field.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -16,18 +20,18 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) {
-        // if (state is LoginFailure) {
-        //   Navigator.pop(context);
-        //   CustomSnackBar.showErrorSnackBar(
-        //     context,
-        //     message: state.failureMsg,
-        //   );
-        // } else if (state is LoginSuccess) {
-        //   Navigator.pop(context);
-        //   state.navigateToHome(context);
-        // } else if (state is LoginLoading) {
-        //   CustomProgressIndicator.showProgressIndicator(context);
-        // }
+        if (state is LoginFailure) {
+          Navigator.pop(context);
+          CustomSnackBar.showErrorSnackBar(
+            context,
+            message: state.failureMsg,
+          );
+        } else if (state is LoginSuccess) {
+          Navigator.pop(context);
+          GoRouter.of(context).pushReplacement('/GroupsScreen');
+        } else if (state is LoginLoading) {
+          CustomProgressIndicator.showProgressIndicator(context);
+        }
       },
       buildWhen: (prev, cur) => cur is LoginInitial,
       builder: (context, state) {
@@ -61,7 +65,7 @@ class LoginViewBody extends StatelessWidget {
                     color: Colors.blue,
                     onTap: () async {
                       if (cubit.formKey.currentState!.validate()) {
-                        // await cubit.login();
+                        await cubit.login();
                       }
                     },
                   ),
@@ -76,7 +80,9 @@ class LoginViewBody extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          GoRouter.of(context).push('/register');
+                        },
                         child: const Text(
                           'SignUp For Free',
                           style: TextStyle(
