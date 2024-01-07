@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:i_a_project/features/groupsPage/presentation/screens/test_download_file.dart';
 import 'package:i_a_project/features/login/presentation/screens/login_screen.dart';
-import 'package:i_a_project/features/groupsPage/presentation/screens/groups_screen.dart';
 import 'package:i_a_project/features/register/presentation/screens/register_screen.dart';
 import 'package:i_a_project/features/splash/splash_view.dart';
 
@@ -15,18 +16,22 @@ abstract class AppRouter {
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
+        path: kLoginView,
+        builder: (context, state) => const LoginView(),
+      ),
+      GoRoute(
         path: kRegisterView,
-        builder: (context, state) {
+        builder: (BuildContext context, GoRouterState state) {
           return const RegisterView();
         },
       ),
       GoRoute(
         path: kGroupsView,
-        builder: (context, state) => const GroupsView(),
-      ),
-      GoRoute(
-        path: kLoginView,
-        builder: (context, state) => const LoginView(),
+        builder: (BuildContext context, GoRouterState state) {
+          return TestDownloadFile(
+            token: state.extra as String,
+          );
+        },
       ),
     ],
   );

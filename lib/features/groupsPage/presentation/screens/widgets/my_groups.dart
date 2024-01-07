@@ -23,7 +23,7 @@ class MyGroups extends StatelessWidget {
                   ElevatedButton.icon(
                       onPressed: () {},
                       icon: const Icon(Icons.add_box_outlined),
-                      label: const Text("Create new group")),
+                      label: const Text("Create new group"))
                 ],
               ),
             ],
