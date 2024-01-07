@@ -1,5 +1,11 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:i_a_project/core/func/custom_progress_indicator.dart';
+import 'package:i_a_project/core/func/custom_snack_bar.dart';
+import 'package:i_a_project/core/utils/app_router.dart';
+import 'package:i_a_project/core/utils/cache_helper.dart';
 import 'package:i_a_project/core/utils/size_config.dart';
 import 'package:i_a_project/core/widgets/custom_button.dart';
 import 'package:i_a_project/core/widgets/custom_text_field.dart';
@@ -15,26 +21,32 @@ class LoginViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
-      listener: (context, state) {
-        // if (state is LoginFailure) {
-        //   Navigator.pop(context);
-        //   CustomSnackBar.showErrorSnackBar(
-        //     context,
-        //     message: state.failureMsg,
-        //   );
-        // } else if (state is LoginSuccess) {
-        //   Navigator.pop(context);
-        //   state.navigateToHome(context);
-        // } else if (state is LoginLoading) {
-        //   CustomProgressIndicator.showProgressIndicator(context);
-        // }
+      listener: (context, state) {        
+        if (state is LoginLoading && !CustomProgressIndicator.isOpen) {
+          CustomProgressIndicator.showProgressIndicator(context);
+        } else {
+          if (CustomProgressIndicator.isOpen) context.pop();
+          if (state is LoginFailure) {
+            CustomSnackBar.showErrorSnackBar(
+              context,
+              message: state.failureMsg,
+            );
+          } else if (state is LoginSuccess) {
+            context.pushReplacement(
+              AppRouter.kGroupsView,
+              extra: state.userModel.token,
+            );
+          }
+        }
+      },      
       },
       buildWhen: (prev, cur) => cur is LoginInitial,
       builder: (context, state) {
         final LoginCubit cubit = BlocProvider.of<LoginCubit>(context);
         return Center(
           child: Container(
-            width: SizeConfig.screenWidth * .4,
+            margin: EdgeInsets.symmetric(vertical: SizeConfig.defaultSize),
+            width: SizeConfig.screenWidth * .35,            
             height: SizeConfig.screenHeight * .95,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
@@ -60,6 +72,7 @@ class LoginViewBody extends StatelessWidget {
                     text: 'Login',
                     color: Colors.blue,
                     onTap: () async {
+                      // log(CacheHelper.getData(key: 'Token').toString());
                       if (cubit.formKey.currentState!.validate()) {
                         // await cubit.login();
                       }
@@ -76,7 +89,9 @@ class LoginViewBody extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push(AppRouter.kRegisterView);
+                        },                        
                         child: const Text(
                           'SignUp For Free',
                           style: TextStyle(
@@ -86,7 +101,7 @@ class LoginViewBody extends StatelessWidget {
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

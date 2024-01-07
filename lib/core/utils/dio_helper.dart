@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:i_a_project/core/constants.dart';
 // import 'package:http/http.dart' as http;
 
@@ -20,13 +21,16 @@ class DioHelper {
     required String url,
     Map<String, dynamic>? query,
     String? token,
+    ResponseType? responseType,
   }) async {
     var response = await dio!.get(
       url,
       queryParameters: query,
       options: Options(
-        headers: {"authorization": "Bearer $token"},
-        // headers: {'auth-token': token},
+        // headers: {"authorization": "Bearer $token"},
+        validateStatus: (_) => true,
+        responseType: responseType,
+        headers: {'auth-token': token},
       ),
     );
     if (response.statusCode == 200) {
@@ -49,10 +53,54 @@ class DioHelper {
       url,
       queryParameters: query,
       options: Options(
-        headers: {"authorization": "Bearer $token"},
-        // headers: {'auth-token': token},
+        // headers: {"authorization": "Bearer $token"},
+        validateStatus: (_) => true,
+        headers: {'auth-token': token},
       ),
       data: body,
+    );
+    if (response.statusCode == 200) {
+      log(response.data.toString());
+      return response;
+    } else {
+      throw Exception(
+        'there is an error with status code ${response.statusCode} and with body : ${response.data}',
+      );
+    }
+  }
+
+  static Future<Response> uploadFile({
+    required PlatformFile file,
+    required String url,
+    required Map<String, String> body,
+    Map<String, dynamic>? query,
+    String? token,
+  }) async {
+    final FormData formData = FormData();
+    body.forEach((key, value) {
+      formData.fields.add(MapEntry(key, value));
+    });
+    formData.files.add(
+      MapEntry(
+        'file',
+        MultipartFile.fromBytes(
+          file.bytes!,
+          filename: file.name,
+        ),
+      ),
+    );
+    var response = await dio!.post(
+      url,
+      queryParameters: query,
+      options: Options(
+        // headers: {"authorization": "Bearer $token"},
+        contentType: 'multipart/form-data',
+        validateStatus: (_) => true,
+        headers: {'auth-token': token},
+      ),
+      data: formData,
+      onSendProgress: (count, total) =>
+          log('progress ... Count=$count  Total=$total'),
     );
     if (response.statusCode == 200) {
       log(response.data.toString());

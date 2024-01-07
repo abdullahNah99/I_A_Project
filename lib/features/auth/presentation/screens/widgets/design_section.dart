@@ -18,7 +18,7 @@ class DesignSection extends StatelessWidget {
         Text(
           'Welcom Back',
           style: TextStyle(
-            fontSize: SizeConfig.defaultSize * 3,
+            fontSize: SizeConfig.defaultSize * 2.5,
             fontWeight: FontWeight.bold,
           ),
         ),

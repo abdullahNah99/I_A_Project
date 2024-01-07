@@ -4,10 +4,14 @@ import 'package:i_a_project/features/register/presentation/cubit/regisetr_cubit/
 import 'package:i_a_project/features/register/presentation/cubit/regisetr_cubit/states.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 
-// ignore: must_be_immutable
 class PasswordTextField extends StatelessWidget {
-  late String label;
-  PasswordTextField(this.label, {super.key});
+  final String label;
+  final TextInputAction? textInputAction;
+  const PasswordTextField({
+    super.key,
+    required this.label,
+    this.textInputAction,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +27,12 @@ class PasswordTextField extends StatelessWidget {
 
         return CustomTextField(
           prefixIcon: const Icon(Icons.lock),
+          textInputAction: textInputAction,
+          onFieldSubmitted: label == 'Password'
+              ? null
+              : (value) async {
+                  await cubit.register();
+                },
           suffixIcon: InkWell(
             borderRadius: BorderRadius.circular(25),
             onTap: () {
@@ -34,13 +44,32 @@ class PasswordTextField extends StatelessWidget {
             ),
           ),
           labelText: label,
-          onChanged: (p0) => cubit.password = p0,
-          onFieldSubmitted: (p0) async {
-            if (cubit.formKey.currentState!.validate()) {
-              // await cubit.Register();
+          onChanged: (p0) {
+            if (label == 'Confirm password') {
+              cubit.confirmPassword = p0;
+            } else {
+              cubit.password = p0;
             }
           },
-          textInputAction: TextInputAction.go,
+          validator: (value) {
+            if (value?.isEmpty ?? true) {
+              return 'Required';
+            } else {
+              if (label == 'Confirm password') {
+                if (cubit.confirmPassword != cubit.password) {
+                  return 'Passwords Does Not Match';
+                }
+              }
+            }
+
+            return null;
+          },
+          // onFieldSubmitted: (p0) async {
+          //   if (cubit.formKey.currentState!.validate()) {
+          //     // await cubit.Register();
+          //   }
+          // },
+          // textInputAction: TextInputAction.go,
           obscureText: cubit.obscureText,
           maxLines: 1,
         );

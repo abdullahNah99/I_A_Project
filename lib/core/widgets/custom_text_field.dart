@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:i_a_project/core/constants.dart';
 import 'package:i_a_project/core/utils/size_config.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -41,7 +40,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width ?? SizeConfig.defaultSize * 30,
+      width: width ?? SizeConfig.defaultSize * 25,
       child: TextFormField(
         autofocus: autofocus,
         initialValue: initialValue,
@@ -65,28 +64,15 @@ class CustomTextField extends StatelessWidget {
         onChanged: onChanged,
         onFieldSubmitted: onFieldSubmitted,
         decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(
-                color: AppConstants.borderColor,
-                width: 2,
-              ),
-            ),
-            hintText: hintText,
-            labelText: labelText,
-            labelStyle: const TextStyle(fontSize: 20),
-            prefixIcon: prefixIcon,
-            suffixIcon: suffixIcon,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(
-                color: AppConstants.gradient1,
-                width: 2,
-              ),
-            )),
+          hintText: hintText,
+          labelText: labelText,
+          labelStyle: const TextStyle(fontSize: 22),
+          prefixIcon: prefixIcon,
+          suffixIcon: suffixIcon,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
       ),
     );
   }

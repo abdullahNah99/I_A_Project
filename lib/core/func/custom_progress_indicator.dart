@@ -7,7 +7,7 @@ abstract class CustomProgressIndicator {
     showDialog(
       context: context,
       barrierDismissible: false,
-      barrierColor: Colors.grey,
+      barrierColor: Colors.grey.withOpacity(.3),
       builder: (context) => WillPopScope(
         onWillPop: () {
           return Future.value(false);

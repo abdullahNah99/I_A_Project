@@ -23,8 +23,8 @@ class MyGroups extends StatelessWidget {
                       style: Theme.of(context).textTheme.subtitle1),
                   ElevatedButton.icon(
                       onPressed: () {},
-                      icon: Icon(Icons.add_box_outlined),
-                      label: Text("Create new group"))
+                      icon: const Icon(Icons.add_box_outlined),
+                      label: const Text("Create new group"))
                 ],
               ),
             ],

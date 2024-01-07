@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:i_a_project/features/groupsPage/presentation/screens/groups_screen.dart';
-
 import '../../../../../core/widgets/custom_spacer.dart';
 
-class groupItem extends StatelessWidget {
-  const groupItem({
-    super.key,
-  });
+class GroupItem extends StatelessWidget {
+  const GroupItem({
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +11,11 @@ class groupItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
+          decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 199, 124, 219),
+              borderRadius: BorderRadius.circular(12)),
+          child: const Padding(
+            padding: EdgeInsets.all(8.0),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
