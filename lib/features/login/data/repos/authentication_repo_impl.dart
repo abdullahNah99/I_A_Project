@@ -245,6 +245,33 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
     }
   }
 
+  @override
+  Future<Either<Failure, CreateGroupResponse>> createGroup({
+    required String name,
+    required String token,
+  }) async {
+    try {
+      var response = await DioHelper.postData(
+        url: 'group',
+        body: {'group_name': name},
+        token: token,
+      );
+      return right(CreateGroupResponse.fromJson(response.data['success']));
+    } catch (ex) {
+      log('There is an error in createGroup method in AuthenticationRepoImpl');
+      print(ex.toString());
+      if (ex is DioException) {
+        return left(
+          ServerFailure(
+            ex.response?.data['msg']['email'][0] ??
+                'Something Went Wrong, Please Try Again',
+          ),
+        );
+      }
+      return left(ServerFailure(ex.toString()));
+    }
+  }
+
   // @override
   // Future<Either<Failure, void>> logout({required String token}) async {
   //   try {
