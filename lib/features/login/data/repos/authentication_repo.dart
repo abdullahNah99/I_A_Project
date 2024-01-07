@@ -42,9 +42,28 @@ abstract class AuthenticationRepo {
     required String token,
     required int fileID,
   });
+
+  Future<Either<Failure, CreateGroupResponse>> createGroup({
+    required String name,
+    required String token,
+  });
   // Future<Either<Failure, void>> logout({
   //   required String token,
   // });
+}
+
+class CreateGroupResponse {
+  final int id;
+  final String name;
+
+  CreateGroupResponse({required this.id, required this.name});
+
+  factory CreateGroupResponse.fromJson(Map<String, dynamic> jsonData) {
+    return CreateGroupResponse(
+      id: jsonData['id'],
+      name: jsonData['group_name'],
+    );
+  }
 }
 
 class User {
