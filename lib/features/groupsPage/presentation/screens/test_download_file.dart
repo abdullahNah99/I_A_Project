@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:i_a_project/core/utils/app_router.dart';
@@ -9,7 +7,6 @@ import 'package:i_a_project/features/groupsPage/presentation/screens/test_upload
 import 'package:i_a_project/features/groupsPage/presentation/screens/widgets/custom_file_widget.dart';
 import 'package:i_a_project/features/login/data/models/file_model.dart';
 import 'package:i_a_project/features/login/data/repos/authentication_repo_impl.dart';
-
 import '../../../../core/utils/cache_helper.dart';
 
 class TestDownloadFile extends StatefulWidget {
@@ -76,6 +73,19 @@ class _TestDownloadFileState extends State<TestDownloadFile> {
                 context.pop();
               }
               context.push(AppRouter.kLoginView);
+            },
+          ),
+          CustomButton(
+            text: 'CreateGroup',
+            onTap: () async {
+              (await AuthenticationRepoImpl().createGroup(
+                name: 'Testt',
+                token: widget.token,
+              ))
+                  .fold(
+                (l) => print(l),
+                (r) => print("success: ID=${r.id} Name=${r.name}"),
+              );
             },
           ),
           Expanded(
