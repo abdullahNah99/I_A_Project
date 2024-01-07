@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:i_a_project/core/widgets/custom_spacer.dart';
 import 'package:i_a_project/core/widgets/space_widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:i_a_project/core/constants.dart';
+import 'package:i_a_project/core/widgets/custom_spacer.dart';
+import 'package:i_a_project/core/widgets/space_widgets.dart';
+import 'package:i_a_project/features/groupsPage/presentation/screens/widgets/DrawerListTile.dart';
 import 'widgets/SideMenu.dart';
 import 'widgets/group_item.dart';
 import 'widgets/header.dart';
@@ -56,7 +61,7 @@ class GroupsScreenBody extends StatelessWidget {
                       crossAxisSpacing: 30,
                       mainAxisSpacing: 30),
                   itemBuilder: (context, index) {
-                    return const GroupItem();
+                    return const GroupItem();                   
                   }),
             ],
           ),

@@ -1,15 +1,11 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-<<<<<<< Updated upstream:lib/features/auth/presentation/screens/widgets/login_view_body.dart
-=======
 import 'package:go_router/go_router.dart';
 import 'package:i_a_project/core/func/custom_progress_indicator.dart';
 import 'package:i_a_project/core/func/custom_snack_bar.dart';
 import 'package:i_a_project/core/utils/app_router.dart';
 import 'package:i_a_project/core/utils/cache_helper.dart';
->>>>>>> Stashed changes:lib/features/login/presentation/screens/widgets/login_view_body.dart
 import 'package:i_a_project/core/utils/size_config.dart';
 import 'package:i_a_project/core/widgets/custom_button.dart';
 import 'package:i_a_project/core/widgets/custom_text_field.dart';
@@ -25,21 +21,7 @@ class LoginViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
-      listener: (context, state) {
-<<<<<<< Updated upstream:lib/features/auth/presentation/screens/widgets/login_view_body.dart
-        // if (state is LoginFailure) {
-        //   Navigator.pop(context);
-        //   CustomSnackBar.showErrorSnackBar(
-        //     context,
-        //     message: state.failureMsg,
-        //   );
-        // } else if (state is LoginSuccess) {
-        //   Navigator.pop(context);
-        //   state.navigateToHome(context);
-        // } else if (state is LoginLoading) {
-        //   CustomProgressIndicator.showProgressIndicator(context);
-        // }
-=======
+      listener: (context, state) {        
         if (state is LoginLoading && !CustomProgressIndicator.isOpen) {
           CustomProgressIndicator.showProgressIndicator(context);
         } else {
@@ -56,30 +38,16 @@ class LoginViewBody extends StatelessWidget {
             );
           }
         }
->>>>>>> Stashed changes:lib/features/login/presentation/screens/widgets/login_view_body.dart
+      },      
       },
-      // listener: (context, state) {
-      //   if (state is LoginFailure) {
-      //     Navigator.pop(context);
-      //     CustomSnackBar.showErrorSnackBar(
-      //       context,
-      //       message: state.failureMsg,
-      //     );
-      //   } else if (state is LoginSuccess) {
-      //     Navigator.pop(context);
-      //     GoRouter.of(context).pushReplacement('/GroupsScreen');
-      //   } else if (state is LoginLoading) {
-      //     CustomProgressIndicator.showProgressIndicator(context);
-      //   }
-      // },
       buildWhen: (prev, cur) => cur is LoginInitial,
       builder: (context, state) {
         final LoginCubit cubit = BlocProvider.of<LoginCubit>(context);
         return Center(
           child: Container(
             margin: EdgeInsets.symmetric(vertical: SizeConfig.defaultSize),
-            width: SizeConfig.screenWidth * .35,
-            // height: SizeConfig.screenHeight * .95,
+            width: SizeConfig.screenWidth * .35,            
+            height: SizeConfig.screenHeight * .95,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(25),
@@ -97,7 +65,7 @@ class LoginViewBody extends StatelessWidget {
                     onChanged: (p0) => cubit.email = p0,
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  const VerticalSpace(2),
+                  const VerticalSpace(3),
                   const PasswordTextField(),
                   const VerticalSpace(3),
                   CustomButton(
@@ -121,13 +89,9 @@ class LoginViewBody extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-<<<<<<< Updated upstream:lib/features/auth/presentation/screens/widgets/login_view_body.dart
-                        onPressed: () {},
-=======
                         onPressed: () {
                           context.push(AppRouter.kRegisterView);
-                        },
->>>>>>> Stashed changes:lib/features/login/presentation/screens/widgets/login_view_body.dart
+                        },                        
                         child: const Text(
                           'SignUp For Free',
                           style: TextStyle(

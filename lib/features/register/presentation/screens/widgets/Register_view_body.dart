@@ -53,6 +53,7 @@ class RegisterViewBody extends StatelessWidget {
       builder: (context, state) {
         final RegisterCubit cubit = BlocProvider.of<RegisterCubit>(context);
         return SingleChildScrollView(
+
           child: Center(
             child: Container(
               margin: EdgeInsets.symmetric(vertical: SizeConfig.defaultSize),

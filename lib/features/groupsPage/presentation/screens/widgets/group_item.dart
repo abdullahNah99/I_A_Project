@@ -3,8 +3,6 @@ import '../../../../../core/widgets/custom_spacer.dart';
 
 class GroupItem extends StatelessWidget {
   const GroupItem({
-    super.key,
-  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +16,8 @@ class GroupItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(12)),
           child: const Padding(
             padding: EdgeInsets.all(8.0),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -37,6 +37,9 @@ class GroupItem extends StatelessWidget {
               ],
             ),
           ),
+          decoration: BoxDecoration(
+              color: Color.fromARGB(255, 199, 124, 219),
+              borderRadius: BorderRadius.circular(12)),
         ),
       ),
     );
