@@ -40,7 +40,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width ?? SizeConfig.defaultSize * 30,
+      width: width ?? SizeConfig.defaultSize * 25,
       child: TextFormField(
         autofocus: autofocus,
         initialValue: initialValue,

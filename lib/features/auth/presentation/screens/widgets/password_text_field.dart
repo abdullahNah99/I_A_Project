@@ -34,7 +34,11 @@ class PasswordTextField extends StatelessWidget {
           onChanged: (p0) => cubit.password = p0,
           onFieldSubmitted: (p0) async {
             if (cubit.formKey.currentState!.validate()) {
+<<<<<<< Updated upstream:lib/features/auth/presentation/screens/widgets/password_text_field.dart
               // await cubit.login();
+=======
+              await cubit.login();
+>>>>>>> Stashed changes:lib/features/login/presentation/screens/widgets/password_text_field.dart
             }
           },
           textInputAction: TextInputAction.go,

@@ -1,5 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+<<<<<<< Updated upstream:lib/features/auth/presentation/screens/widgets/login_view_body.dart
+=======
+import 'package:go_router/go_router.dart';
+import 'package:i_a_project/core/func/custom_progress_indicator.dart';
+import 'package:i_a_project/core/func/custom_snack_bar.dart';
+import 'package:i_a_project/core/utils/app_router.dart';
+import 'package:i_a_project/core/utils/cache_helper.dart';
+>>>>>>> Stashed changes:lib/features/login/presentation/screens/widgets/login_view_body.dart
 import 'package:i_a_project/core/utils/size_config.dart';
 import 'package:i_a_project/core/widgets/custom_button.dart';
 import 'package:i_a_project/core/widgets/custom_text_field.dart';
@@ -16,6 +26,7 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) {
+<<<<<<< Updated upstream:lib/features/auth/presentation/screens/widgets/login_view_body.dart
         // if (state is LoginFailure) {
         //   Navigator.pop(context);
         //   CustomSnackBar.showErrorSnackBar(
@@ -28,14 +39,47 @@ class LoginViewBody extends StatelessWidget {
         // } else if (state is LoginLoading) {
         //   CustomProgressIndicator.showProgressIndicator(context);
         // }
+=======
+        if (state is LoginLoading && !CustomProgressIndicator.isOpen) {
+          CustomProgressIndicator.showProgressIndicator(context);
+        } else {
+          if (CustomProgressIndicator.isOpen) context.pop();
+          if (state is LoginFailure) {
+            CustomSnackBar.showErrorSnackBar(
+              context,
+              message: state.failureMsg,
+            );
+          } else if (state is LoginSuccess) {
+            context.pushReplacement(
+              AppRouter.kGroupsView,
+              extra: state.userModel.token,
+            );
+          }
+        }
+>>>>>>> Stashed changes:lib/features/login/presentation/screens/widgets/login_view_body.dart
       },
+      // listener: (context, state) {
+      //   if (state is LoginFailure) {
+      //     Navigator.pop(context);
+      //     CustomSnackBar.showErrorSnackBar(
+      //       context,
+      //       message: state.failureMsg,
+      //     );
+      //   } else if (state is LoginSuccess) {
+      //     Navigator.pop(context);
+      //     GoRouter.of(context).pushReplacement('/GroupsScreen');
+      //   } else if (state is LoginLoading) {
+      //     CustomProgressIndicator.showProgressIndicator(context);
+      //   }
+      // },
       buildWhen: (prev, cur) => cur is LoginInitial,
       builder: (context, state) {
         final LoginCubit cubit = BlocProvider.of<LoginCubit>(context);
         return Center(
           child: Container(
-            width: SizeConfig.screenWidth * .4,
-            height: SizeConfig.screenHeight * .95,
+            margin: EdgeInsets.symmetric(vertical: SizeConfig.defaultSize),
+            width: SizeConfig.screenWidth * .35,
+            // height: SizeConfig.screenHeight * .95,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(25),
@@ -53,13 +97,14 @@ class LoginViewBody extends StatelessWidget {
                     onChanged: (p0) => cubit.email = p0,
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  const VerticalSpace(3),
+                  const VerticalSpace(2),
                   const PasswordTextField(),
                   const VerticalSpace(3),
                   CustomButton(
                     text: 'Login',
                     color: Colors.blue,
                     onTap: () async {
+                      // log(CacheHelper.getData(key: 'Token').toString());
                       if (cubit.formKey.currentState!.validate()) {
                         // await cubit.login();
                       }
@@ -76,7 +121,13 @@ class LoginViewBody extends StatelessWidget {
                         ),
                       ),
                       TextButton(
+<<<<<<< Updated upstream:lib/features/auth/presentation/screens/widgets/login_view_body.dart
                         onPressed: () {},
+=======
+                        onPressed: () {
+                          context.push(AppRouter.kRegisterView);
+                        },
+>>>>>>> Stashed changes:lib/features/login/presentation/screens/widgets/login_view_body.dart
                         child: const Text(
                           'SignUp For Free',
                           style: TextStyle(
@@ -86,7 +137,7 @@ class LoginViewBody extends StatelessWidget {
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
