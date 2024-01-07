@@ -49,15 +49,16 @@ class GroupsScreenBody extends StatelessWidget {
               const MyGroups(),
               const VerticalSpace(1),
               GridView.builder(
-                  shrinkWrap: true,
-                  itemCount: 9,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 5,
-                      crossAxisSpacing: 30,
-                      mainAxisSpacing: 30),
-                  itemBuilder: (context, index) {
-                    return const GroupItem();
-                  }),
+                shrinkWrap: true,
+                itemCount: 9,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 5,
+                    crossAxisSpacing: 30,
+                    mainAxisSpacing: 30),
+                itemBuilder: (context, index) {
+                  return const GroupItem();
+                },
+              ),
             ],
           ),
         ),

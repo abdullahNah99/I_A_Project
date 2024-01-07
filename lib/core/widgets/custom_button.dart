@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:i_a_project/core/constants.dart';
 import 'package:i_a_project/core/utils/size_config.dart';
 
 class CustomButton extends StatelessWidget {
@@ -18,24 +19,6 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< Updated upstream
-    return Material(
-      color: color,
-      borderRadius: BorderRadius.circular(borderRadius ?? 25),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(borderRadius ?? 25),
-        onTap: onTap,
-        child: SizedBox(
-          width: width ?? SizeConfig.defaultSize * 25,
-          height: SizeConfig.defaultSize * 3.7,
-          child: Center(
-            child: Text(
-              text,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: SizeConfig.defaultSize * 2.5,
-=======
     return Container(
       width: width ?? SizeConfig.defaultSize * 25,
       decoration: BoxDecoration(
@@ -66,7 +49,6 @@ class CustomButton extends StatelessWidget {
                   color: Colors.white,
                   fontSize: SizeConfig.defaultSize * 2,
                 ),
->>>>>>> Stashed changes
               ),
             ),
           ),

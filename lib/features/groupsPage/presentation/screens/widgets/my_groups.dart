@@ -19,11 +19,11 @@ class MyGroups extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(" My groups ",
-                      style: Theme.of(context).textTheme.subtitle1),
+                      style: Theme.of(context).textTheme.titleMedium),
                   ElevatedButton.icon(
                       onPressed: () {},
                       icon: const Icon(Icons.add_box_outlined),
-                      label: const Text("Create new group"))
+                      label: const Text("Create new group")),
                 ],
               ),
             ],
