@@ -17,11 +17,15 @@ class ListOfUsers extends StatelessWidget{
       if (state is ShowUsersSuccess) {
   return Expanded(
   child: ListView.builder(
-  //  itemCount:5,
+   itemCount:state.showusers.length,
     itemBuilder:(context,index) {
     Axis.vertical;
   return Padding(padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10 ),
-  child:CustomListViewItem() ,)
+  child:CustomListViewItem(
+name: state.showusers[index].name,
+email: state.showusers[index].email
+
+  ) ,)
   ;
   }
   ),

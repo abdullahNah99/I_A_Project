@@ -8,13 +8,13 @@ import 'package:i_a_project/features/show_users/presentation/cubits/show_users_c
 import 'package:i_a_project/features/show_users/presentation/cubits/show_users_states.dart';
 import 'package:i_a_project/features/show_users/presentation/screens/widgets/show_users_body.dart';
 class ShowUsers extends StatelessWidget{
-  const ShowUsers({super.key});
-
+  const ShowUsers({super.key, required this.token});
+final String token;
   
   @override
   Widget build(BuildContext context) {
 return  BlocProvider(
-      create: (context) => ShowUsersCubit(getIt.get<users_repo_impl>())..fetchurers(),
+      create: (context) => ShowUsersCubit(ur:getIt.get<users_repo_impl>(),token:token )..fetchurers(),
   child:
   
    BlocConsumer<ShowUsersCubit,ShowUsersStates>(

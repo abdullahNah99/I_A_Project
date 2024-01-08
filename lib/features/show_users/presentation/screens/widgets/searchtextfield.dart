@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:i_a_project/core/constants.dart';
 
 class SearchTextField extends StatelessWidget{
   const SearchTextField({super.key});
@@ -9,7 +10,7 @@ class SearchTextField extends StatelessWidget{
 decoration: InputDecoration(
   enabledBorder: OutlineInputBorder(
     borderSide: const BorderSide(
-      color: Colors.blue
+      color:  AppConstants.gradient1,
     ),
     borderRadius: BorderRadius.circular(12),
      ),

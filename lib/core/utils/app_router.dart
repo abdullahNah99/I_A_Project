@@ -38,7 +38,9 @@ abstract class AppRouter {
       GoRoute(
         path: kusersView,
         builder: (BuildContext context, GoRouterState state) {
-          return const ShowUsers();
+          return ShowUsers(
+             token: state.extra as String,
+          );
         },)
     ],
   );
