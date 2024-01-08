@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:i_a_project/core/constants.dart';
 import 'package:i_a_project/features/show_users/presentation/cubits/show_users_cubit.dart';
 import 'package:i_a_project/features/show_users/presentation/cubits/show_users_states.dart';
 
 class CustomListViewItem extends StatelessWidget{
-  const CustomListViewItem({super.key});
+  const CustomListViewItem({super.key, required this.name, required this.email});
+  final String name;
+   final String email;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +19,7 @@ class CustomListViewItem extends StatelessWidget{
       decoration: BoxDecoration(
     
       ),
-      // width:500,
-      // height:55,
+      
       child: Row(
          crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -25,16 +28,17 @@ class CustomListViewItem extends StatelessWidget{
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Maram Mahmoud Alghsh',style: TextStyle(
+              Text(name,style: TextStyle(
                 fontWeight: FontWeight.w300,
                 fontSize: 20,   
-               color: Colors.blue),),
+               color: AppConstants.gradient1,),),
             SizedBox(
               height: 5, 
             ),
-            Text('Maram44@gmail.com',style: TextStyle(
+            Text(email,style: TextStyle(
                fontWeight: FontWeight.w200,
-              fontSize: 15),),
+              fontSize: 15,
+              ),),
             ],
           ),
           SizedBox(width: 150,),
