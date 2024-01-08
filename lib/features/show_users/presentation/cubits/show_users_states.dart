@@ -17,3 +17,7 @@ final class ShowUsersSuccess extends ShowUsersStates{
   ShowUsersSuccess(this.showusers);
   
 }
+final class AddUsersSuccess extends ShowUsersStates{
+
+  
+}
