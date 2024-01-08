@@ -59,7 +59,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
       return right(UserModel.fromJson(response.data['user']));
     } catch (ex) {
       log('There is an error in register method in AuthenticationRepoImpl');
-      log(ex.toString());
+      print(ex.toString());
       if (ex is DioException) {
         return left(
           ServerFailure(
@@ -80,7 +80,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
   }) async {
     try {
       await DioHelper.uploadFile(
-        url: 'store',
+        url: 'uploadFiles',
         body: {'group_id': '1'},
         file: file,
         token: token,
@@ -102,15 +102,17 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
   }
 
   @override
-  Future<Either<Failure, List<FileModel>>> showAllFiles(
-      {required String token}) async {
+  Future<Either<Failure, List<FileModel>>> showGroupFiles({
+    required String token,
+    required int groupID,
+  }) async {
     try {
       var response = await DioHelper.getData(
-        url: 'showAll',
+        url: 'filesGroup/$groupID',
         token: token,
       );
       List<FileModel> files = [];
-      for (var file in response.data['success']) {
+      for (var file in response.data['files:']) {
         files.add(FileModel.fromJson(file));
       }
       return right(files);
@@ -132,11 +134,11 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
   @override
   Future<Either<Failure, void>> downloadFile({
     required String token,
-    required String fileName,
+    required FileModel fileModel,
   }) async {
     try {
       Response response = await DioHelper.getData(
-        url: 'downloadFile/$fileName',
+        url: 'downloadFile/${fileModel.id}',
         token: token,
         responseType: ResponseType.bytes,
       );
@@ -147,7 +149,7 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
           response.data,
         )}',
       )
-        ..setAttribute('download', fileName)
+        ..setAttribute('download', fileModel.fileName)
         ..click();
 
       return right(null);
@@ -259,6 +261,36 @@ class AuthenticationRepoImpl extends AuthenticationRepo {
       return right(CreateGroupResponse.fromJson(response.data['success']));
     } catch (ex) {
       log('There is an error in createGroup method in AuthenticationRepoImpl');
+      print(ex.toString());
+      if (ex is DioException) {
+        return left(
+          ServerFailure(
+            ex.response?.data['msg']['email'][0] ??
+                'Something Went Wrong, Please Try Again',
+          ),
+        );
+      }
+      return left(ServerFailure(ex.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<FileReportModel>>> getFileReport({
+    required String token,
+    required int fileID,
+  }) async {
+    try {
+      var response = await DioHelper.getData(
+        url: 'file-history-report?id=$fileID',
+        token: token,
+      );
+      final List<FileReportModel> fileReport = [];
+      for (var item in response.data['data']['fileRecords']) {
+        fileReport.add(FileReportModel.fromJson(item));
+      }
+      return right(fileReport);
+    } catch (ex) {
+      log('There is an error in getFileReport method in AuthenticationRepoImpl');
       print(ex.toString());
       if (ex is DioException) {
         return left(
