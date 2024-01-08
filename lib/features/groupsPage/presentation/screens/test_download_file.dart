@@ -97,7 +97,9 @@ class _TestDownloadFileState extends State<TestDownloadFile> {
                 token: widget.token,
               ))
                   .fold(
+                // ignore: avoid_print
                 (l) => print(l),
+                // ignore: avoid_print
                 (r) => print("success: ID=${r.id} Name=${r.name}"),
               );
             },

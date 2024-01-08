@@ -27,7 +27,6 @@ class DioHelper {
       url,
       queryParameters: query,
       options: Options(
-        // headers: {"authorization": "Bearer $token"},
         validateStatus: (_) => true,
         responseType: responseType,
         headers: {'auth-token': token},
