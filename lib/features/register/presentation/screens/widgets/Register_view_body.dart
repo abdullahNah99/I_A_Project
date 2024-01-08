@@ -24,6 +24,7 @@ class RegisterViewBody extends StatelessWidget {
           if (CustomProgressIndicator.isOpen) {
             context.pop();
           }
+
           if (state is RegisterFailure) {
             CustomSnackBar.showErrorSnackBar(context,
                 message: state.failureMsg);

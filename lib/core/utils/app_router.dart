@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:i_a_project/core/utils/cache_helper.dart';
 import 'package:i_a_project/features/groupsPage/presentation/screens/groups_screen.dart';
 import 'package:i_a_project/features/groupsPage/presentation/screens/test_download_file.dart';
 import 'package:i_a_project/features/login/presentation/screens/login_screen.dart';
@@ -16,7 +18,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const SplashView(),
+        builder: (context, state) => SplashView(),
       ),
       GoRoute(
         path: kLoginView,
@@ -41,14 +43,15 @@ abstract class AppRouter {
         builder: (BuildContext context, GoRouterState state) {
           return GroupsView();
         },
-       ),
+      ),
       GoRoute(
         path: kusersView,
         builder: (BuildContext context, GoRouterState state) {
           return ShowUsers(
-             token: state.extra as String,
+            token: CacheHelper.getData(key: 'Token'),
           );
-        },)
+        },
+      )
     ],
   );
 }
