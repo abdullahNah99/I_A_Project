@@ -66,7 +66,7 @@ class _TestDownloadFileState extends State<TestDownloadFile> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const ShowUsers();
+                    return ShowUsers(token: widget.token);
                   },
                 ),
               );

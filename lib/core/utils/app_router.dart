@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:i_a_project/core/utils/cache_helper.dart';
 import 'package:i_a_project/features/groupsPage/presentation/screens/groups_screen.dart';
-import 'package:i_a_project/features/groupsPage/presentation/screens/test_download_file.dart';
 import 'package:i_a_project/features/groupsPage/presentation/screens/test_file_report.dart';
 import 'package:i_a_project/features/login/presentation/screens/login_screen.dart';
 import 'package:i_a_project/features/register/presentation/screens/register_screen.dart';
@@ -20,7 +18,7 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => SplashView(),
+        builder: (context, state) => const SplashView(),
       ),
       GoRoute(
         path: kLoginView,
@@ -43,13 +41,15 @@ abstract class AppRouter {
       GoRoute(
         path: kGroupsView,
         builder: (BuildContext context, GoRouterState state) {
-          return GroupsView();
+          return const GroupsView();
         },
       ),
       GoRoute(
         path: kusersView,
         builder: (BuildContext context, GoRouterState state) {
-          return const ShowUsers();
+          return ShowUsers(
+            token: CacheHelper.getData(key: 'Token'),
+          );
         },
       ),
       GoRoute(
@@ -58,11 +58,6 @@ abstract class AppRouter {
           return const TestFileReport();
         },
       ),
-          return ShowUsers(
-            token: CacheHelper.getData(key: 'Token'),
-          );
-        },
-      )
     ],
   );
 }
