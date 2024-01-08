@@ -11,7 +11,7 @@ void setupServiceLocator() {
     AuthenticationRepoImpl(),
   );
   getIt.registerSingleton<GroupsRepoImpl>(
-    GroupsRepoImpl(),
+    GroupsRepoImpl());
   getIt.registerSingleton<users_repo_impl>(
     users_repo_impl(),
   );

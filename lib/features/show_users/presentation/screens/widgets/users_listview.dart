@@ -22,6 +22,7 @@ class ListOfUsers extends StatelessWidget{
     Axis.vertical;
   return Padding(padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10 ),
   child:CustomListViewItem(
+    id: state.showusers[index].id,
 name: state.showusers[index].name,
 email: state.showusers[index].email
 
@@ -31,7 +32,7 @@ email: state.showusers[index].email
   ),
       );
 }else if(state is ShowUsersFailure){
-  return CustomErrorWidget(errormessege: state.errormessege);
+  return CustomErrorWidget(errMessage: state.errormessege);
 }
 else {
   return const Center(child: const CircularProgressIndicator());
