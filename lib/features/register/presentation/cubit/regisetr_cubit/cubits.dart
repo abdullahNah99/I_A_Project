@@ -13,7 +13,6 @@ class RegisterCubit extends Cubit<RegisterStates> {
   String password = '';
   String confirmPassword = '';
   bool obscureText = true;
-
   RegisterCubit({required this.authenticationRepo}) : super(RegisterInitial());
 
   void changePasswordSuffixIcon() {
