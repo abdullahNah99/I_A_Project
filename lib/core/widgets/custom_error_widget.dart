@@ -16,3 +16,4 @@ class CustomErrorWidget extends StatelessWidget {
     );
   }
 }
+

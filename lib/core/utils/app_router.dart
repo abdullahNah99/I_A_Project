@@ -4,12 +4,14 @@ import 'package:i_a_project/features/groupsPage/presentation/screens/groups_scre
 import 'package:i_a_project/features/groupsPage/presentation/screens/test_download_file.dart';
 import 'package:i_a_project/features/login/presentation/screens/login_screen.dart';
 import 'package:i_a_project/features/register/presentation/screens/register_screen.dart';
+import 'package:i_a_project/features/show_users/presentation/screens/show_users.dart';
 import 'package:i_a_project/features/splash/splash_view.dart';
 
 abstract class AppRouter {
   static const kRegisterView = '/RegisterView';
   static const kLoginView = '/LoginView';
   static const kGroupsView = '/GroupsView';
+  static const kusersView = '/ShowUsers';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -39,7 +41,14 @@ abstract class AppRouter {
         builder: (BuildContext context, GoRouterState state) {
           return GroupsView();
         },
-      ),
+       ),
+      GoRoute(
+        path: kusersView,
+        builder: (BuildContext context, GoRouterState state) {
+          return ShowUsers(
+             token: state.extra as String,
+          );
+        },)
     ],
   );
 }

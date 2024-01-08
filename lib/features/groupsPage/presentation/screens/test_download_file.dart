@@ -7,6 +7,7 @@ import 'package:i_a_project/features/groupsPage/presentation/screens/test_upload
 import 'package:i_a_project/features/groupsPage/presentation/screens/widgets/custom_file_widget.dart';
 import 'package:i_a_project/features/login/data/models/file_model.dart';
 import 'package:i_a_project/features/login/data/repos/authentication_repo_impl.dart';
+import 'package:i_a_project/features/show_users/presentation/screens/show_users.dart';
 import '../../../../core/utils/cache_helper.dart';
 
 class TestDownloadFile extends StatefulWidget {
@@ -52,6 +53,19 @@ class _TestDownloadFileState extends State<TestDownloadFile> {
                 MaterialPageRoute(
                   builder: (context) {
                     return TestUploadFile(token: widget.token);
+                  },
+                ),
+              );
+            },
+          ),
+          CustomButton(
+            text: 'users',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ShowUsers(token: widget.token);
                   },
                 ),
               );
