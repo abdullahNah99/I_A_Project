@@ -1,11 +1,15 @@
 class showusersmodel {
+  final int id;
   final String name;
   final String email;
 
-  showusersmodel({required this.name, required this.email});
+  showusersmodel( {required this.name, required this.email, required this.id});
 
   factory showusersmodel.fromJson(Map<String, dynamic> jsonData) {
-    return showusersmodel(name: jsonData['name'], email: jsonData['email']);
+    return showusersmodel(
+      id :jsonData['id'],
+      name: jsonData['name'],
+      email: jsonData['email']);
     
   }
 

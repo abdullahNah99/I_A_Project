@@ -5,10 +5,11 @@ import 'package:i_a_project/features/show_users/presentation/cubits/show_users_c
 import 'package:i_a_project/features/show_users/presentation/cubits/show_users_states.dart';
 
 class CustomListViewItem extends StatelessWidget{
-  const CustomListViewItem({super.key, required this.name, required this.email});
+   CustomListViewItem({super.key, required this.name, required this.email, required this.id});
   final String name;
    final String email;
-  
+   final int id;
+  List< int>?ids;
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +49,13 @@ class CustomListViewItem extends StatelessWidget{
           height: 20,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
-            color: cubit.colorbutton,
+            color: AppConstants.gradient1,
           ),
           child: TextButton(onPressed: (){
-            cubit.changeColor();
+            
+             cubit.user_ids.add("$id");
           },
-          child: Text('ADD',style: TextStyle(color: cubit.colortextm),),),
+          child: Text('ADD'),),
          )
         ],
       ),
