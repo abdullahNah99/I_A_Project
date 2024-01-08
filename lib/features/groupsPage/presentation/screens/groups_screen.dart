@@ -13,10 +13,11 @@ import 'widgets/my_groups.dart';
 
 class GroupsView extends StatelessWidget {
   const GroupsView({super.key});
-
+  // final String token;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    // final  UserGroupsCubit cubit = BlocProvider.of<UserGroupsCubit>(context);
+    return Scaffold(
       body: SafeArea(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,14 +46,14 @@ class GroupsScreenBody extends StatelessWidget {
     return SafeArea(
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(25.0),
+          padding: EdgeInsets.all(25.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Header(),
-              const customSpacer(),
-              const MyGroups(),
-              const VerticalSpace(1),
+              Header(),
+              customSpacer(),
+              MyGroups(),
+              VerticalSpace(1),
               ListGroups(),
             ],
           ),
@@ -85,7 +86,7 @@ class ListGroups extends StatelessWidget {
         } else if (state is UserGroupsFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
         } else {
-          return CustomLoadingIndicator();
+          return const CustomLoadingIndicator();
         }
       },
     );

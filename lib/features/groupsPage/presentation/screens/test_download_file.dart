@@ -21,8 +21,9 @@ class TestDownloadFile extends StatefulWidget {
 class _TestDownloadFileState extends State<TestDownloadFile> {
   List<FileModel> files = [];
   void showAllFiles() async {
-    (await AuthenticationRepoImpl().showAllFiles(
+    (await AuthenticationRepoImpl().showGroupFiles(
       token: widget.token,
+      groupID: 1,
     ))
         .fold(
       (failure) {},

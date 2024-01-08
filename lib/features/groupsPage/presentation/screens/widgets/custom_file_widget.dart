@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:i_a_project/core/utils/app_router.dart';
 import 'package:i_a_project/core/utils/size_config.dart';
 import 'package:i_a_project/features/login/data/models/file_model.dart';
 import '../../../../login/data/repos/authentication_repo_impl.dart';
@@ -17,7 +19,9 @@ class CustomFileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        context.push(AppRouter.kFileReportView);
+      },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultSize),
         height: SizeConfig.defaultSize * 2.7,
@@ -37,6 +41,19 @@ class CustomFileWidget extends StatelessWidget {
             ),
             Row(
               children: [
+                IconButton(
+                  onPressed: () async {
+                    log('Report');
+                    await AuthenticationRepoImpl().getFileReport(
+                      token: token,
+                      fileID: fileModel.id,
+                    );
+                  },
+                  icon: Icon(
+                    Icons.info_rounded,
+                    size: SizeConfig.defaultSize * 1.5,
+                  ),
+                ),
                 IconButton(
                   onPressed: () async {
                     log('CheckIN');
@@ -66,7 +83,7 @@ class CustomFileWidget extends StatelessWidget {
                 IconButton(
                   onPressed: () async {
                     await AuthenticationRepoImpl().downloadFile(
-                      fileName: fileModel.fileName,
+                      fileModel: fileModel,
                       token: token,
                     );
                   },

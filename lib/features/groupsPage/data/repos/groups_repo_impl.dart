@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:i_a_project/core/errors/failure.dart';
+import 'package:i_a_project/core/utils/cache_helper.dart';
 import 'package:i_a_project/core/utils/dio_helper.dart';
 import 'package:i_a_project/features/groupsPage/data/models/group_model.dart';
 import 'package:i_a_project/features/groupsPage/data/repos/groups_repo.dart';
@@ -12,8 +13,7 @@ class GroupsRepoImpl implements GroupsRepo {
     try {
       var data = await DioHelper.getData(
         url: "/usersGroup",
-        token:
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MDQ2NTc0ODIsImV4cCI6MTcwNDY2MTA4MiwibmJmIjoxNzA0NjU3NDgyLCJqdGkiOiJ2OXQ1UG1Xa0pxeXRUUnZIIiwic3ViIjoiNSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.Fm6i6Lw6ExZQ1RAL1-EqyXcVRqYXlSmNNmPyPRLSNPU",
+        token: await CacheHelper.getData(key: 'Token'),
       );
       List<GroupModel> Groups = [];
       for (var item in data.data['groups:']) {

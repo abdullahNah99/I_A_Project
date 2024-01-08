@@ -5,6 +5,8 @@ import 'package:i_a_project/features/groupsPage/presentation/manger/user_group_c
 class UserGroupsCubit extends Cubit<UserGroupsState> {
   UserGroupsCubit(this.groupsrepo) : super(UserGroupsInitial());
   final GroupsRepo groupsrepo;
+  String groupname = '';
+
   Future<void> fetchGroupsUsers() async {
     emit(UserGroupsLoading());
     var result = await groupsrepo.getGroupsOfUser();
