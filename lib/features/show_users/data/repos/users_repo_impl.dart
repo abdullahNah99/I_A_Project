@@ -7,14 +7,19 @@ import 'package:i_a_project/features/show_users/data/repos/users_repo.dart';
 
 class users_repo_impl implements users_repo {
 //  users_repo_impl();
+
+
+  
   @override
-  Future<Either<Failure, List<showusersmodel>>> fetchlistofusers() async {
+  Future<Either<Failure, List<showusersmodel>>> fetchlistofusers({
+  required String token
+  }
+  ) async {
     try {
       var response = await DioHelper.getData(
         url: '/users',
-        token:
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MDQ2Mjg4NTYsImV4cCI6MTcwNDYzMjQ1NiwibmJmIjoxNzA0NjI4ODU2LCJqdGkiOiJRWkgyZWJlT21aZmRJM1FYIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.p9FGZ0nnla_xjnHLWVZPmqnZPeY6zER69jynhrd--r4',
-      );
+        token:token
+            );
       
 
       List<showusersmodel> showusers = [];

@@ -24,6 +24,7 @@ class RegisterViewBody extends StatelessWidget {
           if (CustomProgressIndicator.isOpen) {
             context.pop();
           }
+
           if (state is RegisterFailure) {
             CustomSnackBar.showErrorSnackBar(context,
                 message: state.failureMsg);
@@ -53,7 +54,6 @@ class RegisterViewBody extends StatelessWidget {
       builder: (context, state) {
         final RegisterCubit cubit = BlocProvider.of<RegisterCubit>(context);
         return SingleChildScrollView(
-
           child: Center(
             child: Container(
               margin: EdgeInsets.symmetric(vertical: SizeConfig.defaultSize),

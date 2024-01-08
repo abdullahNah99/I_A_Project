@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:i_a_project/features/groupsPage/data/models/group_model.dart';
 import '../../../../../core/widgets/custom_spacer.dart';
 
 class GroupItem extends StatelessWidget {
-  const GroupItem({
-    super.key,
-  });
+  final GroupModel group;
+
+  const GroupItem({Key? key, required this.group}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class GroupItem extends StatelessWidget {
           decoration: BoxDecoration(
               color: const Color.fromARGB(255, 199, 124, 219),
               borderRadius: BorderRadius.circular(12)),
-          child: const Padding(
+          child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,7 +26,7 @@ class GroupItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Group id"),
+                    Text("${group.groupId}"),
                     Icon(
                       Icons.more_vert,
                       color: Colors.white,
@@ -33,7 +34,7 @@ class GroupItem extends StatelessWidget {
                   ],
                 ),
                 customSpacer(),
-                Text('Group admin')
+                Text('${group.userId}')
               ],
             ),
           ),
