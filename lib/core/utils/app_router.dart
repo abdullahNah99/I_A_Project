@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:i_a_project/core/utils/cache_helper.dart';
 import 'package:i_a_project/features/groupsPage/presentation/screens/groups_screen.dart';
 import 'package:i_a_project/features/groupsPage/presentation/screens/test_download_file.dart';
+import 'package:i_a_project/features/groupsPage/presentation/screens/test_file_report.dart';
 import 'package:i_a_project/features/login/presentation/screens/login_screen.dart';
 import 'package:i_a_project/features/register/presentation/screens/register_screen.dart';
 import 'package:i_a_project/features/show_users/presentation/screens/show_users.dart';
@@ -14,6 +15,7 @@ abstract class AppRouter {
   static const kLoginView = '/LoginView';
   static const kGroupsView = '/GroupsView';
   static const kusersView = '/ShowUsers';
+  static const kFileReportView = '/FileReportView';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -47,6 +49,15 @@ abstract class AppRouter {
       GoRoute(
         path: kusersView,
         builder: (BuildContext context, GoRouterState state) {
+          return const ShowUsers();
+        },
+      ),
+      GoRoute(
+        path: kFileReportView,
+        builder: (BuildContext context, GoRouterState state) {
+          return const TestFileReport();
+        },
+      ),
           return ShowUsers(
             token: CacheHelper.getData(key: 'Token'),
           );

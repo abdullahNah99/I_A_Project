@@ -21,8 +21,9 @@ class TestDownloadFile extends StatefulWidget {
 class _TestDownloadFileState extends State<TestDownloadFile> {
   List<FileModel> files = [];
   void showAllFiles() async {
-    (await AuthenticationRepoImpl().showAllFiles(
+    (await AuthenticationRepoImpl().showGroupFiles(
       token: widget.token,
+      groupID: 1,
     ))
         .fold(
       (failure) {},
@@ -65,7 +66,7 @@ class _TestDownloadFileState extends State<TestDownloadFile> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return ShowUsers(token: widget.token);
+                    return const ShowUsers();
                   },
                 ),
               );

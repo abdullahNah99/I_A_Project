@@ -23,12 +23,14 @@ abstract class AuthenticationRepo {
     required int groupID,
   });
 
-  Future<Either<Failure, List<FileModel>>> showAllFiles(
-      {required String token});
+  Future<Either<Failure, List<FileModel>>> showGroupFiles({
+    required String token,
+    required int groupID,
+  });
 
   Future<Either<Failure, void>> downloadFile({
     required String token,
-    required String fileName,
+    required FileModel fileModel,
   });
 
   Future<Either<Failure, List<User>>> getGroupUsers({required int groupID});
@@ -47,9 +49,34 @@ abstract class AuthenticationRepo {
     required String name,
     required String token,
   });
+
+  Future<Either<Failure, List<FileReportModel>>> getFileReport({
+    required String token,
+    required int fileID,
+  });
   // Future<Either<Failure, void>> logout({
   //   required String token,
   // });
+}
+
+class FileReportModel {
+  final String userName;
+  final String state;
+  final String date;
+
+  FileReportModel({
+    required this.userName,
+    required this.state,
+    required this.date,
+  });
+
+  factory FileReportModel.fromJson(Map<String, dynamic> jsonData) {
+    return FileReportModel(
+      userName: jsonData['userName'],
+      state: jsonData['state'],
+      date: jsonData['date'],
+    );
+  }
 }
 
 class CreateGroupResponse {

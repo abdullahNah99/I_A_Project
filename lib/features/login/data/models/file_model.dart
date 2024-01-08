@@ -3,7 +3,7 @@ class FileModel {
   final String fileName;
   final String path;
   final String createdDate;
-  final int state;
+  // final int state;
   final int groupID;
 
   FileModel({
@@ -11,7 +11,7 @@ class FileModel {
     required this.fileName,
     required this.path,
     required this.createdDate,
-    required this.state,
+    // required this.state,
     required this.groupID,
   });
 
@@ -20,8 +20,8 @@ class FileModel {
       id: jsonData['id'],
       fileName: jsonData['file_name'],
       path: jsonData['path'],
-      createdDate: jsonData['created_date'],
-      state: jsonData['state'],
+      createdDate: jsonData['created_at'],
+      // state: jsonData['state'],
       groupID: jsonData['group_id'],
     );
   }
